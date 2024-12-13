@@ -1,25 +1,36 @@
-# README
+# ガーデニング管理アプリケーション
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+全世界のガーデニング初心者の方が知識と経験不足による植物管理がうまくいかないという課題を解決するガーデニング管理アプリケーションです．
+このリポジトリはAPIのリポジトリです
 
-Things you may want to cover:
+---
 
-* Ruby version
+環境構築方法
+---
+**以下の手順を踏んで環境を構築してください**
 
-* System dependencies
+**クローン**
 
-* Configuration
+``` clone git@github.com:sasatoast/Kotatsumuri.git  ```
 
-* Database creation
+**.envファイルの作成**
 
-* Database initialization
+``` touch .env ```
 
-* How to run the test suite
+**Dockerを立ち上げる**
 
-* Services (job queues, cache servers, search engines, etc.)
+``` docker compose up ```
 
-* Deployment instructions
+### Postgresqlの起動
 
-* ...
-# Kotatsumuri
+**コンテナ内に移動**
+```docker exec -it kotatsumuri-db-1 bash```
+
+**Postgresqlを起動**
+
+```sql -U postgres```
+
+
+**パスワードを入力**
+
+```postgres```
