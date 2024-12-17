@@ -22,7 +22,7 @@ services:
       DATABASE_PASSWORD: postgres
       DATABASE_NAME: myapp_production
     volumes:
-      - .:/myapp
+      - .:/rails
     ports:
       - "3000:3000"
     depends_on:
