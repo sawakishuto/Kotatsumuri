@@ -1,0 +1,2 @@
+class UsersPlant < ApplicationRecord
+end
