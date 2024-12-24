@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users_plants
   resources :users
   resources :plants
+  get 'plants/search', to: 'plants#search'
   # Defines the root path route ("/")
   # root "posts#index"
 end
