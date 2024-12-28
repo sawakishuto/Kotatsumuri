@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_27_075813) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_27_091040) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "care_periods", force: :cascade do |t|
     t.bigint "care_schedule_id", null: false
-    t.string "start"
-    t.string "end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "period_type"
+    t.date "start"
+    t.date "end"
     t.index ["care_schedule_id"], name: "index_care_periods_on_care_schedule_id"
   end
 
