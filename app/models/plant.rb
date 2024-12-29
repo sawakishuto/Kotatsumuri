@@ -1,3 +1,6 @@
 class Plant < ApplicationRecord
-  accepts_nested_attributes_for :growth_condition, :care_schedule, :propagation_methods
+    # 他のアソシエーション
+    has_one :growth_condition
+    has_one :care_schedule
+    has_many :propagation_methods
 end

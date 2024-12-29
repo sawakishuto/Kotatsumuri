@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_29_142024) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_29_142026) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,9 +18,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_29_142024) do
     t.bigint "care_schedule_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "period_type"
-    t.date "start"
-    t.date "end"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "period_type"
     t.index ["care_schedule_id"], name: "index_care_periods_on_care_schedule_id"
   end
 
