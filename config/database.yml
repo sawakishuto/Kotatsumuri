@@ -26,7 +26,7 @@ default: &default
 
 development:
   <<: *default
-  database: postgres
+  database: Kotatsumuri
   password: postgres
   username: postgres
   
@@ -37,6 +37,6 @@ test:
 # Production environment settings.
 production:
   <<: *default
-  database: postgres
+  database: Kotatsumuri
   username: postgres
   password: <%= ENV["KOTATSUMURI_DATABASE_PASSWORD"] %>
