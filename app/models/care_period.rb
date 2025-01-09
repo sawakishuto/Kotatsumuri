@@ -3,5 +3,5 @@
     belongs_to :care_schedule
     validates :period_type, inclusion: { in: %w[blooming planting repotting fertilizing pruning] }
 
-    validates :start_date, end_date, presence: true
+    validates :start_date, :end_date, presence: true
   end
