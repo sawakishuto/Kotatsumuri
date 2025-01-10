@@ -30,7 +30,7 @@ gem "bootsnap", require: false
 # gem "rack-cors"
 
 #ユーザー認証ライブラリの追加
-#gem "devise"
+gem "devise"
 
 
 
