@@ -13,21 +13,16 @@ GrowthCondition.create!(
   hardiness_zone: '3-9'
 )
 
-# CareSchedule モデルのモックデータ
-care_schedule = CareSchedule.create!(
-  plant: plant
-)
-
 # CarePeriod モデルのモックデータ
 CarePeriod.create!(
-  care_schedule: care_schedule,
+  plant: plant,
   period_type: 'fertilizing',
   start_date: DateTime.parse('2024-01-01 10:00:00'),
   end_date: DateTime.parse('2024-03-01 10:00:00')
 )
 
 CarePeriod.create!(
-  care_schedule: care_schedule,
+  plant: plant,
   period_type: 'pruning',
   start_date: DateTime.parse('2024-04-01 10:00:00'),
   end_date: DateTime.parse('2024-06-01 10:00:00')
