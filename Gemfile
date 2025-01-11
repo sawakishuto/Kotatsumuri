@@ -30,6 +30,7 @@ gem "bootsnap", require: false
 # gem "rack-cors"
 
 #ユーザー認証ライブラリの追加
+gem 'ruby-openai', '~> 7.3.1'
 gem "devise"
 
 #Lineログイン認証を行うための拡張機能
@@ -38,10 +39,6 @@ gem 'omniauth-rails_csrf_protection'
 
 #環境変数を設定する用途
 gem 'dotenv-rails'
-
-
-
-
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
