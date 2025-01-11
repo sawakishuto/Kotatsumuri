@@ -10,25 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_29_142026) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_09_120653) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "care_periods", force: :cascade do |t|
-    t.bigint "care_schedule_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "start_date"
     t.datetime "end_date"
     t.string "period_type"
-    t.index ["care_schedule_id"], name: "index_care_periods_on_care_schedule_id"
-  end
-
-  create_table "care_schedules", force: :cascade do |t|
     t.bigint "plant_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["plant_id"], name: "index_care_schedules_on_plant_id"
+    t.index ["plant_id"], name: "index_care_periods_on_plant_id"
   end
 
   create_table "growth_conditions", force: :cascade do |t|
@@ -72,8 +65,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_29_142026) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "care_periods", "care_schedules"
-  add_foreign_key "care_schedules", "plants"
+  add_foreign_key "care_periods", "plants"
   add_foreign_key "growth_conditions", "plants"
   add_foreign_key "propagation_methods", "plants"
 end
