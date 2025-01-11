@@ -31,8 +31,8 @@ gem "bootsnap", require: false
 
 #ユーザー認証ライブラリの追加
 #gem "devise"
-
-gem "ruby-openai"
+gem 'dotenv-rails'
+gem 'ruby-openai', '~> 7.3.1'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
