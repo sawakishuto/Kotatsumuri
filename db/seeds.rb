@@ -16,14 +16,14 @@ GrowthCondition.create!(
 # CarePeriod モデルのモックデータ
 CarePeriod.create!(
   plant: plant,
-  period_type: 'fertilizing',
+  period_type: 'fertilizing_period',
   start_date: DateTime.parse('2024-01-01 10:00:00'),
   end_date: DateTime.parse('2024-03-01 10:00:00')
 )
 
 CarePeriod.create!(
   plant: plant,
-  period_type: 'pruning',
+  period_type: 'pruning_period',
   start_date: DateTime.parse('2024-04-01 10:00:00'),
   end_date: DateTime.parse('2024-06-01 10:00:00')
 )
