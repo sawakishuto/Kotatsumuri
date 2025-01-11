@@ -32,6 +32,14 @@ gem "bootsnap", require: false
 #ユーザー認証ライブラリの追加
 gem "devise"
 
+#Lineログイン認証を行うための拡張機能
+gem 'omniauth-line'
+gem 'omniauth-rails_csrf_protection'
+
+#環境変数を設定する用途
+gem 'dotenv-rails'
+
+
 
 
 group :development, :test do
