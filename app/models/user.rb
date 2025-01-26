@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :confirmable, :lockable, :timeoutable, :trackable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-  validates :line_user_id, presence: true, uniqueness: true
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: %i[line] # この1行を追加
 end
