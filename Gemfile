@@ -26,7 +26,15 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 # Gemfile
-gem 'firebase_id_token'
+gem "firebase_id_token", "3.0.0"
+gem "httparty", "0.21.0"
+gem "redis", "5.3.0"
+
+# Redis のネームスペース機能を使う場合
+gem "redis-namespace", "1.11.0"
+
+# Redis のクライアント管理を行う場合
+gem "redis-client", "0.23.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
