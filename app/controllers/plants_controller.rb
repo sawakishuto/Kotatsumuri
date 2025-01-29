@@ -35,7 +35,17 @@ class PlantsController < ApplicationController
           description: response[:reply]["propagation_methods"].first["description"]
         )
       end
-        render json: { reply: response[:reply] }
+      @plants = Plant.where("name LIKE ?", "%#{query}%").first
+      @care_periods = CarePeriod.where("plant_id = ?", @plants.id)
+      @growth_conditions = GrowthCondition.where("plant_id = ?", @plants.id)
+      render json: {
+        plant: {
+          name: @plants.name,
+          description: @plants.description,
+          care_periods: @care_periods,
+          growth_conditions: @growth_conditions[0]
+        }
+      }
     else
       @care_periods = CarePeriod.where("plant_id = ?", @plants.id)
       @growth_conditions = GrowthCondition.where("plant_id = ?", @plants.id)
@@ -44,7 +54,7 @@ class PlantsController < ApplicationController
           name: @plants.name,
           description: @plants.description,
           care_periods: @care_periods,
-          growth_conditions: @growth_conditions
+          growth_conditions: @growth_conditions[0]
         }
       }
     end
