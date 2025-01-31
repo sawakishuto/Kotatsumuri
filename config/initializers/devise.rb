@@ -306,7 +306,7 @@ Devise.setup do |config|
   config.responder.redirect_status = :see_other
 
   #LINEログインの設定
-  config.omniauth :line, ENV['LINE_KEY'], ENV['LINE_SECRET']
+  # config.omniauth :line, ENV['LINE_KEY'], ENV['LINE_SECRET']
 
 
   # ==> Configuration for :registerable
