@@ -41,11 +41,6 @@ gem "redis-namespace", "1.11.0"
 gem "ruby-openai", "~> 7.3.1"
 gem "devise"
 
-# Lineログイン認証を行うための拡張機能
-gem "omniauth-line"
-gem "omniauth-rails_csrf_protection"
-gem "typhoeus"
-gem "securerandom"
 
 # 環境変数を設定する用途
 gem "dotenv-rails"
