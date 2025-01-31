@@ -33,8 +33,6 @@ gem "redis", "5.3.0"
 # Redis のネームスペース機能を使う場合
 gem "redis-namespace", "1.11.0"
 
-# Redis のクライアント管理を行う場合
-gem "redis-client", "0.23.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
