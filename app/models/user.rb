@@ -1,7 +1,18 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :confirmable, :lockable, :timeoutable, :trackable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-  validates :line_user_id, presence: true, uniqueness: true
+  :recoverable, :rememberable,:omniauthable, :validatable
+
+  validates :email, presence: false, allow_nil: true
+
+  validates :password, presence: false, allow_nil: true
+    # Firebase UIDを必須にする
+  validates :firebase_uid, presence: true, uniqueness: true
+
+  def password_required?
+    return false if firebase_uid.present? # Firebase ユーザーならパスワード不要
+    super
+  end
+
 end

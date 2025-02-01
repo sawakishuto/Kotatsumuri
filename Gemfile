@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '7.2.2.1'
+gem "rails", "7.2.2.1"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
@@ -25,20 +25,25 @@ gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+# Gemfile
+gem "firebase_id_token", "3.0.0"
+gem "httparty", "0.21.0"
+gem "redis", "5.3.0"
+gem "omniauth", "1.0.0"
+# Redis のネームスペース機能を使う場合
+gem "redis-namespace", "1.11.0"
+
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
-#ユーザー認証ライブラリの追加
-gem 'ruby-openai', '~> 7.3.1'
+# ユーザー認証ライブラリの追加
+gem "ruby-openai", "~> 7.3.1"
 gem "devise"
 
-#Lineログイン認証を行うための拡張機能
-gem 'omniauth-line'
-gem 'omniauth-rails_csrf_protection'
 
-#環境変数を設定する用途
-gem 'dotenv-rails'
+# 環境変数を設定する用途
+gem "dotenv-rails"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -48,7 +53,4 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
-
 end
-
-
