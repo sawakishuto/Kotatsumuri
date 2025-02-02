@@ -36,11 +36,9 @@ PropagationMethod.create!(
 
 # User モデルのモックデータ
 User.create!(
-  line_user_id: '111',
+  firebase_uid: '111',
   name: '山田 太郎',
   email: 'yamadataro123@gmail.com',
-  encrypted_password: 'password',
-  password: 'password',
   profile_image_url: 'https://qiita-user-profile-images.imgix.net/https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F131576261%3Fv%3D4?ixlib=rb-4.0.0&auto=compress%2Cformat&lossless=0&w=128&s=ecf0979eb5508ccd0104d17d74e75ddd'
 )
 
