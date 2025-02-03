@@ -13,6 +13,11 @@ Rails.application.routes.draw do
       patch "me", to: "users#update_me"
     end
   end
+  namespace :users do
+    collection do
+      get "care_periods", to: "care_periods#show"
+    end
+  end
   resources :plants do
     resources :search, only: [ :show ]
   end
