@@ -16,4 +16,13 @@ class UsersController < ApplicationController
       render json: user, status: :ok
     end
   end
+
+  def login
+    user = User.find_by(firebase_uid: @current_user.firebase_uid)
+    if user.nil?
+      render json: { error: "User not found" }, status: :not_found
+    else
+      render json: user, status: :ok
+    end
+  end
 end
