@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :users, only: [ :update, :show ] do
     collection do
       patch "me", to: "users#update_me"
+      get "login", to: "users#login"
     end
   end
   resources :plants do
