@@ -40,21 +40,27 @@ class PlantsController < ApplicationController
       @growth_conditions = GrowthCondition.where("plant_id = ?", @plants.id)
       render json: {
         plant: {
+          id: @plants.id,
           name: @plants.name,
           description: @plants.description,
           care_periods: @care_periods,
-          growth_conditions: @growth_conditions[0]
+          growth_conditions: @growth_conditions[0],
+          is_registered: false
         }
       }
     else
       @care_periods = CarePeriod.where("plant_id = ?", @plants.id)
       @growth_conditions = GrowthCondition.where("plant_id = ?", @plants.id)
+      @is_registered = UsersPlant.where("uid = ? AND plantid = ?", @current_user.firebase_uid, @plants.id).exists?
+      puts @is_registered
       render json: {
         plant: {
+          id: @plants.id,
           name: @plants.name,
           description: @plants.description,
           care_periods: @care_periods,
-          growth_conditions: @growth_conditions[0]
+          growth_conditions: @growth_conditions[0],
+          is_registered: @is_registered
         }
       }
     end

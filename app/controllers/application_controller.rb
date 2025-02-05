@@ -8,26 +8,26 @@ class ApplicationController < ActionController::API
   def authenticate_firebase_user
     header = request.headers["Authorization"]
     return unauthorized unless header.present?
-
     token = header.split(" ").last
     begin
-      peyload = FirebaseIdToken::Signature.verify(token)
-
-      firebase_uid = payload['sub']
-
-      @current_user = User.find_or_create_by!(firebase_uid: firebase_uid) do |u|
-        u.email = user_email
-        # 他にも必要な情報があればここでセット
+      puts "start verify"
+      firebase_id_token = FirebaseIdToken::TokenVerifier.new
+      payload = firebase_id_token.verify_id_token(token)
+      # puts payload
+      firebase_uid = payload["sub"]
+      firebase_email = payload["email"]
+      @current_user = User.find_by(firebase_uid: firebase_uid)
+      unless @current_user
+          @current_user = User.create!(firebase_uid: firebase_uid, email: firebase_email)
       end
+    end
     rescue => e
       # 検証エラー時は 401 を返す
       Rails.logger.warn "Firebase auth error: #{e.message}"
-      return unauthorized
+      unauthorized
     end
-  end
-  
-  def unauthorized
-    render json: { error: 'Unauthorized' }, status: :unauthorized
-  end
 
+  def unauthorized
+    render json: { error: "Unauthorized" }, status: :unauthorized
+  end
 end

@@ -29,12 +29,10 @@ gem "bootsnap", require: false
 gem "firebase_id_token", "3.0.0"
 gem "httparty", "0.21.0"
 gem "redis", "5.3.0"
-
+gem "omniauth", "1.0.0"
 # Redis のネームスペース機能を使う場合
 gem "redis-namespace", "1.11.0"
 
-# Redis のクライアント管理を行う場合
-gem "redis-client", "0.23.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
@@ -43,11 +41,6 @@ gem "redis-client", "0.23.2"
 gem "ruby-openai", "~> 7.3.1"
 gem "devise"
 
-# Lineログイン認証を行うための拡張機能
-gem "omniauth-line"
-gem "omniauth-rails_csrf_protection"
-gem "typhoeus"
-gem "securerandom"
 
 # 環境変数を設定する用途
 gem "dotenv-rails"
