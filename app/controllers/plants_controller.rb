@@ -34,24 +34,26 @@ class PlantsController < ApplicationController
           plant_id: @plant.id,
           description: response[:reply]["propagation_methods"].first["description"]
         )
-      end
-      @plants = Plant.where("name LIKE ?", "%#{query}%").first
-      @care_periods = CarePeriod.where("plant_id = ?", @plants.id)
-      @growth_conditions = GrowthCondition.where("plant_id = ?", @plants.id)
-      render json: {
+        @plant = Plant.where("name LIKE ?", "%#{query}%").first
+        @care_periods = CarePeriod.where("plant_id = ?", @plant.id)
+        @growth_conditions = GrowthCondition.where("plant_id = ?", @plant.id)
+        render json: {
         plant: {
-          id: @plants.id,
-          name: @plants.name,
-          description: @plants.description,
+          id: @plant.id,
+          name: @plant.name,
+          description: @plant.description,
           care_periods: @care_periods,
           growth_conditions: @growth_conditions[0],
           is_registered: false
+          }
         }
-      }
+      else
+        render json: { error: response[:error] }, status: :unprocessable_entity
+      end
     else
       @care_periods = CarePeriod.where("plant_id = ?", @plants.id)
       @growth_conditions = GrowthCondition.where("plant_id = ?", @plants.id)
-      @is_registered = UsersPlant.where("uid = ? AND plantid = ?", @current_user.firebase_uid, @plants.id).exists?
+      @is_registered = UsersPlant.where("uid = ? AND plant_id = ?", @current_user.firebase_uid, @plants.id).exists?
       puts @is_registered
       render json: {
         plant: {
