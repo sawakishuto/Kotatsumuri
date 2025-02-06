@@ -45,5 +45,5 @@ User.create!(
 # UsersPlant モデルのモックデータ
 UsersPlant.create!(
   uid: '111',
-  plantid: plant.id,
+  plant_id: plant.id,
 )
