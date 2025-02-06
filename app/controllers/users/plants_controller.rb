@@ -18,7 +18,7 @@ class PlantsController < ApplicationController
   def  index
     begin
      users_id=@current_user.firebase_uid
-     plants_ids=UsersPlant.where(uid: users_id).pluck(:id)
+     plants_ids=UsersPlant.where(firebase_uid: users_id).pluck(:id)
      plants=Plant.where(id: plants_ids)
      render json: { plants: plants }
     rescue
