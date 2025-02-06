@@ -53,7 +53,7 @@ class PlantsController < ApplicationController
     else
       @care_periods = CarePeriod.where("plant_id = ?", @plants.id)
       @growth_conditions = GrowthCondition.where("plant_id = ?", @plants.id)
-      @is_registered = UsersPlant.where("uid = ? AND plant_id = ?", @current_user.firebase_uid, @plants.id).exists?
+      @is_registered = UsersPlant.where("firebase_uid = ? AND plant_id = ?", @current_user.firebase_uid, @plants.id).exists?
       puts @is_registered
       render json: {
         plant: {
