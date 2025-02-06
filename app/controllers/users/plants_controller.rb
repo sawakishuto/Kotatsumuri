@@ -2,10 +2,11 @@ module Users
 class PlantsController < ApplicationController
   def create
     begin
-      UsersPlant.create!(
-        uid: @current_user.firebase_uid,
-        plantid: params[:plant_id]
-      )
+      plant = Plant.find_by_id(params[:plant_id])
+      users_plant = UsersPlant.new(firebase_uid: @current_user.firebase_uid, plant_id: plant.id)
+      Rails.logger.debug "UsersPlant instance: #{users_plant.inspect}"
+
+      users_plant.save!
     rescue
         render json: { error: "保存に失敗しました"  }, status: :unprocessable_entity
     end
