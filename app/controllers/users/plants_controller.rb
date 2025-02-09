@@ -32,7 +32,8 @@ class PlantsController < ApplicationController
     # モデルから関数を呼び出すだけの処理
     user = @current_user
     plant_ids = UsersPlant.plant_ids_for(user.firebase_uid)
-    care_periods = CarePeriod.for_plant_ids(plant_ids)
+    specific_time = Time.now
+    care_periods = CarePeriod.for_plant_ids_in_date_range(plant_ids, specific_time)
 
     # jsonで返却
     if care_periods.exists?
