@@ -46,7 +46,8 @@ class PlantsController < ApplicationController
           id: care_period.id,
           start_date: care_period.start_date,
           end_date: care_period.end_date,
-          period_type: care_period.period_type
+          period_type: care_period.period_type,
+          image_url: Plant.find(care_period.plant_id).image_url
         }
       end
       puts care_period_list
