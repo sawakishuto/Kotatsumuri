@@ -32,6 +32,8 @@ gem "redis", "5.3.0"
 gem "omniauth", "1.0.0"
 # Redis のネームスペース機能を使う場合
 gem "redis-namespace", "1.11.0"
+gem "google-cloud-storage"
+
 
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
@@ -55,4 +57,3 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 end
 
-gem "google-cloud-storage", "~> 1.54"

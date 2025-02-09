@@ -370,7 +370,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   firebase_id_token (= 3.0.0)
-  google-cloud-storage (~> 1.54)
+  google-cloud-storage
   httparty (= 0.21.0)
   omniauth (= 1.0.0)
   pg (~> 1.1)
