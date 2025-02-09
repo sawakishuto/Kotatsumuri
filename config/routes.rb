@@ -10,13 +10,17 @@ Rails.application.routes.draw do
   resources :users_plants
   namespace :users do
       get "plants/care_info", to: "plants#care_info"
+      post "plants", to: "plants#create"
+      get "plants", to: "plants#index"
     end
-  resources :users, only: [ :update, :show ] do
+  resources :users do
     collection do
       patch "me", to: "users#update_me"
       get "login", to: "users#login"
     end
+
   end
+
   resources :plants do
     resources :search, only: [ :show ]
   end

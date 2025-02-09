@@ -1,5 +1,33 @@
 module Users
 class PlantsController < ApplicationController
+  def create
+    begin
+      plant = Plant.find_by_id(params[:plant_id])
+      users_plant = UsersPlant.new(firebase_uid: @current_user.firebase_uid, plant_id: plant.id)
+      Rails.logger.debug "UsersPlant instance: #{users_plant.inspect}"
+
+      users_plant.save!
+    rescue
+        render json: { error: "保存に失敗しました"  }, status: :unprocessable_entity
+    end
+  end
+
+  # def index
+  # # ユーザーidの取得,userplantテーブルから自分のユーザーidがある植物のidを取得、plantテーブルからその植物の情報を取得
+  # uid=@current_user.uid
+  def  index
+    begin
+     users_id=@current_user.firebase_uid
+     plants_ids=UsersPlant.where(firebase_uid: users_id).pluck(:id)
+     plants=Plant.where(id: plants_ids)
+     render json: { plants: plants }
+    rescue
+      render json: { error: "見つかりませんでした" }
+    end
+  end
+
+  # end
+
   def care_info
     # モデルから関数を呼び出すだけの処理
     user = @current_user
@@ -18,7 +46,7 @@ class PlantsController < ApplicationController
           id: care_period.id,
           start_date: care_period.start_date,
           end_date: care_period.end_date,
-          period_type: care_period.period_type,
+          period_type: care_period.period_type
         }
       end
       puts care_period_list
