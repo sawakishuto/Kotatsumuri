@@ -1,7 +1,7 @@
 class TodosController < ApplicationController
   def create
     begin
-      @todo=Todo.create!{
+      todo=Todo.create!{
         taskname=params[:task_name],
         discription=params[:discription],
         timing=params[:timing],
@@ -16,7 +16,7 @@ class TodosController < ApplicationController
   end
 
   def show
-    @todo=todo.findby(user_plants_id: params(:users_plants_id))
+    todo=todo.findby(user_plants_id: params(:users_plants_id))
     render json: @todo
   end
 end
