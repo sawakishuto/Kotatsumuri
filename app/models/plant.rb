@@ -15,7 +15,7 @@ class Plant < ApplicationRecord
 
     query_params = {
       action: 'query',
-      title: search_key,
+      titles: search_key,
       prop: 'pageimages',
       pithumbsize: 300,
       format: 'json'

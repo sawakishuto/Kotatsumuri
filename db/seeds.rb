@@ -75,7 +75,13 @@ User.create!(
   name: '立命 花子',
   email: 'Hana@gmail.com',
   profile_image_url: 'https://qiita-user-profile-images.imgix.net/https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F131576261%3Fv%3D4?ixlib=rb-4.0.0&auto=compress%2Cformat&lossless=0&w=128&s=ecf0979eb5508ccd0104d17d74e75ddd'
+)
 
+User.create!(
+  firebase_uid: 'I0AFEbP6GbdY4joUuCsVn5heacx1',
+  name: '太田 啓夢',
+  email: 'Hi@gmail.com',
+  profile_image_url: 'https://qiita-user-profile-images.imgix.net/https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F131576261%3Fv%3D4?ixlib=rb-4.0.0&auto=compress%2Cformat&lossless=0&w=128&s=ecf0979eb5508ccd0104d17d74e75ddd'
 )
 
 # UsersPlant モデルのモックデータ
@@ -104,7 +110,7 @@ puts(plantss.ids)
 plantss.each do |plant|
   puts (plant.id)
   UsersPlant.create!(
-    uid: 'I0AFEbP6GbdY4joUuCsVn5heacx1',
-    plantid: plant.id,
+    firebase_uid: 'I0AFEbP6GbdY4joUuCsVn5heacx1',
+    plant_id: plant.id,
   )
 end
