@@ -57,5 +57,33 @@ class PlantsController < ApplicationController
       render json: { error: "CarePeriods not found" }, status: 404
     end
   end
-end
-end
+  def get_diagnoses
+        user = @current_user
+        plant_id = params[:plant_id]
+        response = OpenAiService.new.post_diagnoses(
+          name: params[:name],
+          location: params[:location],
+          sunlight: params[:sunlight],
+          ventilation: params[:ventilation],
+          soil_type: params[:soil_type],
+          temperature: params[:temperature],
+          leaf_color: params[:leaf_color],
+          stem_root_condition: params[:stem_root_condition], 
+          watering_frequency: params[:watering_frequency],  
+          fertilizer_type: params[:fertilizer_type],    
+          fertilizing_frequency: params[:fertilizing_frequency],
+          pesticide_history: params[:pesticide_history],
+          recent_weather: params[:recent_weather],
+          image: params[:image]
+        )
+  
+        if response[:success]
+          render json: response[:reply], status: :ok
+        else
+          render json: { error: response[:error] }, status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
+
