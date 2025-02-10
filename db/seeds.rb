@@ -78,9 +78,9 @@ User.create!(
 )
 
 User.create!(
-  firebase_uid: 'I0AFEbP6GbdY4joUuCsVn5heacx1',
+  firebase_uid: 'HUIOgRRFluhO9dDs9RQKt2EzoFD3',
   name: '太田 啓夢',
-  email: 'Hi@gmail.com',
+  email: 'Aa@gmail.com',
   profile_image_url: 'https://qiita-user-profile-images.imgix.net/https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F131576261%3Fv%3D4?ixlib=rb-4.0.0&auto=compress%2Cformat&lossless=0&w=128&s=ecf0979eb5508ccd0104d17d74e75ddd'
 )
 
@@ -110,7 +110,7 @@ puts(plantss.ids)
 plantss.each do |plant|
   puts (plant.id)
   UsersPlant.create!(
-    firebase_uid: 'I0AFEbP6GbdY4joUuCsVn5heacx1',
+    firebase_uid: 'HUIOgRRFluhO9dDs9RQKt2EzoFD3',
     plant_id: plant.id,
   )
 end

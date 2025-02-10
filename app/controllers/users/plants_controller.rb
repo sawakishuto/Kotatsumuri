@@ -12,6 +12,28 @@ class PlantsController < ApplicationController
     end
   end
 
+  def show
+    begin
+      user = @current_user
+      plant_id = params[:plant_id]
+      Rails.logger.debug "Plant ID: #{plant_id}"
+      user_plants = UsersPlant.find_by(firebase_uid: user.firebase_uid, plant_id: plant_id)
+
+      if user_plants.nil?
+        render json: { message: "UsersPlant not found" }, status: :not_found
+        return
+      end
+      plant = Plant.find_by_id(plant_id)
+      todos = Todo.where(users_plants_id: user_plants.id)
+      render json: {
+        plant: plant,
+        todos: todos
+      }
+    rescue
+      render json: { error: "見つかりませんでした" }, status: :not_found
+    end
+  end
+
   # def index
   # # ユーザーidの取得,userplantテーブルから自分のユーザーidがある植物のidを取得、plantテーブルからその植物の情報を取得
   # uid=@current_user.uid

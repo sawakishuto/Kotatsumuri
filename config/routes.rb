@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get "plants/care_info", to: "plants#care_info"
       post "plants", to: "plants#create"
       get "plants", to: "plants#index"
+      get "plants/:plant_id", to: "plants#show"
       resources :plants do
       post "diagnoses", to: "plants#get_diagnoses"
       end
