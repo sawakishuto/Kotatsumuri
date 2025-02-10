@@ -40,7 +40,7 @@ class PlantsController < ApplicationController
         else
           @plant.update!(image_url: "https://sesupport.edumall.jp/hc/article_attachments/900009570963/noImage.jpg")
         end
-        # @plant = Plant.where("name LIKE ?", "%#{query}%").first
+        @plant = Plant.where("name LIKE ?", "%#{query}%").first
         @care_periods = CarePeriod.where("plant_id = ?", @plant.id)
         @growth_conditions = GrowthCondition.where("plant_id = ?", @plant.id)
         render json: {
