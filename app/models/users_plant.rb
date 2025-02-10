@@ -1,10 +1,9 @@
 class UsersPlant < ApplicationRecord
-  belongs_to :plant
   belongs_to :user, foreign_key: :firebase_uid, primary_key: :firebase_uid
-
-
+  belongs_to :plant, optional: true
   # 受け取ったuidに紐づくplantidを取得。
-  def self.plant_ids_for(firebase_uid)
-    where(firebase_uid: firebase_uid).pluck(:plant_id)
+
+  def self.plant_ids_for(uid)
+    where(firebase_uid: uid).pluck(:plant_id)
   end
 end
