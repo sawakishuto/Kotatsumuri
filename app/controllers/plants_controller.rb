@@ -34,7 +34,13 @@ class PlantsController < ApplicationController
           plant_id: @plant.id,
           description: response[:reply]["propagation_methods"].first["description"]
         )
-        @plant = Plant.where("name LIKE ?", "%#{query}%").first
+        image = Plant.search_wikipedia_image_url(query)
+        if image.present?
+          @plant.update!(image_url: image)
+        else
+          @plant.update!(image_url: "https://sesupport.edumall.jp/hc/article_attachments/900009570963/noImage.jpg")
+        end
+        # @plant = Plant.where("name LIKE ?", "%#{query}%").first
         @care_periods = CarePeriod.where("plant_id = ?", @plant.id)
         @growth_conditions = GrowthCondition.where("plant_id = ?", @plant.id)
         render json: {
@@ -44,7 +50,8 @@ class PlantsController < ApplicationController
           description: @plant.description,
           care_periods: @care_periods,
           growth_conditions: @growth_conditions[0],
-          is_registered: false
+          is_registered: false,
+          image_url: @plant.image_url
           }
         }
       else
