@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_09_134130) do
+
+ActiveRecord::Schema[7.2].define(version: 2025_02_09_174201) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +53,18 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_09_134130) do
     t.index ["plant_id"], name: "index_propagation_methods_on_plant_id"
   end
 
+  create_table "todos", force: :cascade do |t|
+    t.string "taskname"
+    t.string "discription"
+    t.string "timing"
+    t.string "priority"
+    t.string "status"
+    t.string "duedate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "users_plants_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "profile_image_url"
@@ -59,6 +73,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_09_134130) do
     t.string "email"
     t.datetime "remember_created_at"
     t.string "firebase_uid"
+    t.bigint "users_plants_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

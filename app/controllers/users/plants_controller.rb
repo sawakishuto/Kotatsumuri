@@ -20,7 +20,7 @@ class PlantsController < ApplicationController
      users_id=@current_user.firebase_uid
      plants_ids=UsersPlant.where(firebase_uid: users_id).pluck(:id)
      plants=Plant.where(id: plants_ids)
-     render json: { plants: plants }
+     render json: { plants: plants ,plants_id: plants_ids}
     rescue
       render json: { error: "見つかりませんでした" }
     end

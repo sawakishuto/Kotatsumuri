@@ -27,6 +27,10 @@ Rails.application.routes.draw do
   resources :plants do
     resources :search, only: [ :show ]
   end
+  resources :todos do
+    post "todos", to: "todos#create"
+    get "todos", to: "todos#show"
+  end
   resources :care_periods
   # Defines the root path route ("/")
   # root "posts#index"
