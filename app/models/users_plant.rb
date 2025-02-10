@@ -4,7 +4,7 @@ class UsersPlant < ApplicationRecord
 
 
   # 受け取ったuidに紐づくplantidを取得。
-  def self.plant_ids_for(uid)
-    where(uid: uid).pluck(:plant_id)
+  def self.plant_ids_for(firebase_uid)
+    where(firebase_uid: firebase_uid).pluck(:plant_id)
   end
 end
