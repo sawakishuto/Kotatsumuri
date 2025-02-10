@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       get "plants/care_info", to: "plants#care_info"
       post "plants", to: "plants#create"
       get "plants", to: "plants#index"
+      resources :plants do
+      post "diagnoses", to: "plants#get_diagnoses"
+      end
     end
   resources :users do
     collection do
