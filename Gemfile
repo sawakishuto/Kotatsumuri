@@ -40,7 +40,7 @@ gem "google-cloud-storage"
 # gem "rack-cors"
 
 # ユーザー認証ライブラリの追加
-gem "ruby-openai", "~> 7.3.1"
+gem "ruby-openai", "~> 7.4.0"
 gem "devise"
 
 
