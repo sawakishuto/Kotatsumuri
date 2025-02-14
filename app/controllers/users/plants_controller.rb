@@ -24,9 +24,19 @@ class PlantsController < ApplicationController
         return
       end
       plant = Plant.find_by_id(plant_id)
+      care_periods = CarePeriod.where(plant_id: plant_id)
+      growth_conditions = GrowthCondition.find_by(plant_id: plant_id)
+      propagation_methods = PropagationMethod.find_by(plant_id: plant_id)
       todos = Todo.where(users_plants_id: user_plants.id)
+      puts propagation_methods.description
       render json: {
-        plant: plant,
+        plant: {
+          name: plant.name,
+          description: plant.description,
+          care_periods: care_periods,
+          growth_conditions: growth_conditions,
+          propagation_methods: propagation_methods
+        },
         todos: todos
       }
     rescue
@@ -40,9 +50,10 @@ class PlantsController < ApplicationController
   def  index
     begin
      users_id=@current_user.firebase_uid
-     plants_ids=UsersPlant.where(firebase_uid: users_id).pluck(:id)
-     plants=Plant.where(id: plants_ids)
-     render json: { plants: plants ,plants_id: plants_ids}
+     plant_ids = UsersPlant.plant_ids_for(users_id)
+     plants=Plant.where(id: plant_ids)
+     puts plants
+     render json: { plants: plants }
     rescue
       render json: { error: "見つかりませんでした" }
     end
@@ -90,22 +101,40 @@ class PlantsController < ApplicationController
           soil_type: params[:soil_type],
           temperature: params[:temperature],
           leaf_color: params[:leaf_color],
-          stem_root_condition: params[:stem_root_condition], 
-          watering_frequency: params[:watering_frequency],  
-          fertilizer_type: params[:fertilizer_type],    
+          stem_root_condition: params[:stem_root_condition],
+          watering_frequency: params[:watering_frequency],
+          fertilizer_type: params[:fertilizer_type],
           fertilizing_frequency: params[:fertilizing_frequency],
           pesticide_history: params[:pesticide_history],
           recent_weather: params[:recent_weather],
           image: params[:image]
         )
-  
+
         if response[:success]
           render json: response[:reply], status: :ok
         else
           render json: { error: response[:error] }, status: :unprocessable_entity
         end
       end
-    end
-  end
 
 
+
+      def upload_image
+        @diagnoses = Diagnosis.new
+        @diagnoses.image.attach(params[:image])
+
+        if @diagnoses.save
+          puts json: { image_url: @diagnoses.image.blob }, status: :created
+          render json: { image_url: @diagnoses.image.blob }, status: :created
+        else
+          render json: { error: "画像のアップロードに失敗しました" }, status: :unprocessable_entity
+        end
+      end
+
+      private
+
+      def image_params
+        params.permit(:image)
+      end
+end
+end
