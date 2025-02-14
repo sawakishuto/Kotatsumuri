@@ -60,6 +60,7 @@ class OpenAiService
 
   def post_diagnoses(params)
     begin
+
       messages = [
         {
           role: "user",
@@ -110,7 +111,8 @@ class OpenAiService
             }
             ],}",
             temperature: 0.0
-          }
+          },
+          { type: "image_url", image_url: {url: params[:image] }} # 画像URLを適切なものに変更
           ]
         }
       ]
