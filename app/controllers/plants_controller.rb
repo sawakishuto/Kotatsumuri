@@ -43,6 +43,7 @@ class PlantsController < ApplicationController
         @plant = Plant.where("name LIKE ?", "%#{query}%").first
         @care_periods = CarePeriod.where("plant_id = ?", @plant.id)
         @growth_conditions = GrowthCondition.where("plant_id = ?", @plant.id)
+        @propagation_methods = PropagationMethod.where("plant_id = ?", @plant.id)
         render json: {
         plant: {
           id: @plant.id,
@@ -50,6 +51,7 @@ class PlantsController < ApplicationController
           description: @plant.description,
           care_periods: @care_periods,
           growth_conditions: @growth_conditions[0],
+          propagation_methods: @propagation_methods[0],
           is_registered: false,
           image_url: @plant.image_url
           }
@@ -61,6 +63,7 @@ class PlantsController < ApplicationController
       @care_periods = CarePeriod.where("plant_id = ?", @plants.id)
       @growth_conditions = GrowthCondition.where("plant_id = ?", @plants.id)
       @is_registered = UsersPlant.where("firebase_uid = ? AND plant_id = ?", @current_user.firebase_uid, @plants.id).exists?
+      @propagation_methods = PropagationMethod.where("plant_id = ?", @plants.id)
       puts @is_registered
       render json: {
         plant: {
@@ -69,6 +72,7 @@ class PlantsController < ApplicationController
           description: @plants.description,
           care_periods: @care_periods,
           growth_conditions: @growth_conditions[0],
+          propagation_methods: @propagation_methods[0],
           is_registered: @is_registered
         }
       }
