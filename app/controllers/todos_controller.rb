@@ -36,6 +36,7 @@ class TodosController < ApplicationController
     plant_id = params[:todo_id]
     Rails.logger.debug "Plant ID: #{plant_id}"
     user_plants = UsersPlant.find_by(firebase_uid: user.firebase_uid, plant_id: plant_id)
+    puts user_plants.inspect
 
     if user_plants.nil?
       render json: { message: "UsersPlant not found" }, status: :not_found
@@ -43,6 +44,21 @@ class TodosController < ApplicationController
     end
 
     todos = Todo.where(users_plants_id: user_plants.id)
+    puts todos.inspect
+    todos.map do |todo|
+      if todo[:priority] == 'high'
+        todo[:priority] = "高"
+      elsif todo[:priority] == 'medium'
+        todo[:priority] = "中"
+      elsif todo[:priority] == 'low'
+        todo[:priority] = "低"
+      end
+      if todo[:status] == 'notStarted'
+        todo[:status] = "未着手"
+      elsif todo[:status] == 'done'
+        todo[:status] = "完了"
+      end
+    end
     render json: todos
   end
 
