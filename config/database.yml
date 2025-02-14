@@ -39,4 +39,4 @@ production:
   <<: *default
   database: Kotatsumuri
   username: postgres
-  password: <%= ENV["KOTATSUMURI_DATABASE_PASSWORD"] %>
+  password: postgres
