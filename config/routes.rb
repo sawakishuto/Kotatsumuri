@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       post "plants", to: "plants#create"
       get "plants", to: "plants#index"
       get "plants/:plant_id", to: "plants#show"
+      post "plants/diagnoses/image", to: "plants#upload_image"
+
       resources :plants do
       post "diagnoses", to: "plants#get_diagnoses"
       end
