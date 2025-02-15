@@ -2,7 +2,7 @@
 
 one:
   taskname: MyString
-  discription: MyString
+  description: MyString
   timing: MyString
   priority: MyString
   status: MyString
@@ -10,7 +10,7 @@ one:
 
 two:
   taskname: MyString
-  discription: MyString
+  description: MyString
   timing: MyString
   priority: MyString
   status: MyString

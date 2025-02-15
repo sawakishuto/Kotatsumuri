@@ -120,8 +120,7 @@ class OpenAiService
       response = @client.chat(
         parameters: {
         model: "gpt-4o-mini",
-        messages: messages,
-        max_tokens: 2000
+        messages: messages
     }
       )
 

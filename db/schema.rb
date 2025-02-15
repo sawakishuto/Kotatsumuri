@@ -91,7 +91,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_11_192728) do
 
   create_table "todos", force: :cascade do |t|
     t.string "taskname"
-    t.string "discription"
+    t.string "description"
     t.string "timing"
     t.string "priority"
     t.string "status"

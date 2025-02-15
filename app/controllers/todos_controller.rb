@@ -14,7 +14,7 @@ class TodosController < ApplicationController
       todos_params.each do |todo_params|
         Todo.create!(
           taskname: todo_params[:taskname],
-          discription: todo_params[:discription],
+          description: todo_params[:description],
           timing: todo_params[:timing],
           priority: todo_params[:priority],
           status: todo_params[:status],
@@ -66,7 +66,7 @@ class TodosController < ApplicationController
 
   def todos_params
     params.require(:todos).map do |todo|
-      todo.permit(:taskname, :discription, :timing, :priority, :status, :duedate)
+      todo.permit(:taskname, :description, :timing, :priority, :status, :duedate)
     end
   end
 end
