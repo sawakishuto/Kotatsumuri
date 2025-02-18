@@ -5,20 +5,20 @@ class TodosController < ApplicationController
       plant_id = params[:todo_id]
       Rails.logger.debug "Plant ID: #{plant_id}"
       user_plants = UsersPlant.find_by(firebase_uid: user.firebase_uid, plant_id: plant_id)
-
       if user_plants.nil?
         render json: { message: "UsersPlant not found" }, status: :not_found
         return
       end
 
       todos_params.each do |todo_params|
+        puts todo_params.inspect
         Todo.create!(
-          taskname: todo_params[:taskname],
+          task_name: todo_params[:task_name],
           description: todo_params[:description],
           timing: todo_params[:timing],
           priority: todo_params[:priority],
           status: todo_params[:status],
-          duedate: todo_params[:duedate],
+          due_date: todo_params[:due_date],
           users_plants_id: user_plants.id
         )
       end
@@ -44,7 +44,6 @@ class TodosController < ApplicationController
     end
 
     todos = Todo.where(users_plants_id: user_plants.id)
-    puts todos.inspect
     todos.map do |todo|
       if todo[:priority] == 'high'
         todo[:priority] = "高"
@@ -66,7 +65,7 @@ class TodosController < ApplicationController
 
   def todos_params
     params.require(:todos).map do |todo|
-      todo.permit(:taskname, :description, :timing, :priority, :status, :duedate)
+      todo.permit(:task_name, :description, :timing, :priority, :status, :due_date)
     end
   end
 end
