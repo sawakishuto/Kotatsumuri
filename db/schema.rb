@@ -90,12 +90,12 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_11_192728) do
   end
 
   create_table "todos", force: :cascade do |t|
-    t.string "taskname"
+    t.string "task_name"
     t.string "description"
     t.string "timing"
     t.string "priority"
     t.string "status"
-    t.string "duedate"
+    t.string "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "users_plants_id"
