@@ -28,7 +28,7 @@ gem "bootsnap", require: false
 # Gemfile
 gem "firebase_id_token", "3.0.0"
 gem "httparty", "0.21.0"
-gem "redis", "5.3.0"
+gem "redis", "5.4.0"
 gem "omniauth", "1.0.0"
 # Redis のネームスペース機能を使う場合
 gem "redis-namespace", "1.11.0"
