@@ -62,4 +62,4 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 ENV PORT=8080
 EXPOSE 8080
 
-CMD ["./bin/rails", "server", "-b", "0.0.0.0", "-p", "${PORT}"]
+CMD ["./bin/rails", "server", "-b", "0.0.0.0", "-p", "${PORT:-3000}"]
