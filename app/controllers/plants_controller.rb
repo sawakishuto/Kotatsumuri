@@ -4,7 +4,7 @@ class PlantsController < ApplicationController
     @plants = Plant.where("name LIKE ?", "%#{query}%").first
 
     if @plants.nil?
-      response = OpenAiService.new.get_response(query)
+      response = Adapters::OpenAiAapter.new.get_response(query)
       if response[:success]
         puts response[:reply]
         ActiveRecord::Base.transaction do
