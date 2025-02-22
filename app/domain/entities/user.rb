@@ -1,4 +1,4 @@
-  module Entity
+  module Entities
     class User
       attr_reader :firebase_uid, :email, :name
 
