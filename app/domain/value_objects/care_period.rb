@@ -1,5 +1,5 @@
-  module ValueObject
-    class ValueObject::CarePeriod < ValueObject::Base
+  module ValueObjects
+    class ValueObjects::CarePeriod < ValueObjects::Base
       attr_reader :plant_id, :start_date, :end_date, :period_type
 
       validates :plant_id, presence: true

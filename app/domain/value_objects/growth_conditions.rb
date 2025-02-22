@@ -1,5 +1,5 @@
-  module ValueObject
-    class ValueObject::GrowthConditions < ValueObject::Base
+  module ValueObjects
+    class ValueObjects::GrowthConditions < ValueObjects::Base
       attr_reader :plant_id, :light, :soil, :hardiness_zone
 
       validates :plant_id, presence: true

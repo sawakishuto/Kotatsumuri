@@ -1,5 +1,5 @@
-  module ValueObject
-    class ValueObject::PropagationMethods < ValueObject::Base
+  module ValueObjects
+    class ValueObjects::PropagationMethods < ValueObjects::Base
       attr_reader :plant_id, :method, :description
 
       validates :plant_id, presence: true

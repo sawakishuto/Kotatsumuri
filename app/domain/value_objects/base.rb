@@ -1,4 +1,4 @@
-module ValueObject
+module ValueObjects
 class Base
   include ActiveModel::Model
 
