@@ -1,6 +1,5 @@
-module Domain
   module ValueObject
-    class Value::CarePeriod < Value::Base
+    class ValueObject::CarePeriod < ValueObject::Base
       attr_reader :plant_id, :start_date, :end_date, :period_type
 
       validates :plant_id, presence: true
@@ -14,6 +13,7 @@ module Domain
         @end_date = end_date
         @period_type = period_type
         super()
+        validate_type!
       end
 
       private
@@ -21,13 +21,8 @@ module Domain
         %i[plant_id start_date end_date period_type]
       end
 
-      def validate!
-        raise ArgumentError, "plant_id is required" if @plant_id.nil?
-        raise ArgumentError, "start_date is required" if @start_date.nil?
-        raise ArgumentError, "end_date is required" if @end_date.nil?
-        raise ArgumentError, "period_type is required" if @period_type.nil?
-        raise DomainError, "period_type is invalid" if @period_type != "blooming_period" || @period_type != "pruning_period" || @period_type != "fertilizing_period" || @period_type != "planting_period" || @period_type != "repotting_period"
+      def validate_type!
+        render unless period_type.in?(%w[blooming_period pruning_period planting_period fertilizing_period repotting_period])
       end
     end
   end
-end
