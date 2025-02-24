@@ -1,3 +1,4 @@
+module Adapters
 class OpenAiAdapter
   require "openai"
 
@@ -134,4 +135,5 @@ class OpenAiAdapter
       { success: false, error: e.message }
     end
   end
+end
 end
