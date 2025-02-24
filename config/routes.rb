@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     get "plants", to: "todos#show"
   end
   resources :care_periods
+  root "plants#index"
   # Defines the root path route ("/")
   # root "posts#index"
 end
