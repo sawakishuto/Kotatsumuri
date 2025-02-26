@@ -32,7 +32,6 @@ jobs:
           command: |
             rm -rf Gemfile.lock
             bundle install --jobs=4 --retry=3
-
       - run:
           name: Check if Rails is installed
           command: bundle list | grep rails
@@ -49,11 +48,6 @@ jobs:
       - restore_cache:
           keys:
             - gems-{{ checksum "Gemfile.lock" }}
-      - run:
-          name: Clear old gems & reinstall dependencies
-          command: |
-            rm -rf Gemfile.lock
-            bundle install --jobs=4 --retry=3
       - run:
           name: Setup database
           command: |
