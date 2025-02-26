@@ -42,6 +42,8 @@ gem "google-cloud-storage"
 # ユーザー認証ライブラリの追加
 gem "ruby-openai", "~> 7.3.1"
 gem "devise"
+gem "rspec-rails" # 追加
+
 
 
 # 環境変数を設定する用途
@@ -56,4 +58,3 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end
-
