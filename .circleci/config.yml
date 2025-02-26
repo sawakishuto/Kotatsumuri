@@ -33,13 +33,6 @@ jobs:
       #       bundle install --jobs=4 --retry=3
 
       - run:
-          name: Clear old cache
-          command: |
-            rm -rf Gemfile.lock
-            rm -rf ~/.bundle vendor/bundle
-            bundle install --path vendor/bundle --jobs=4 --retry=3
-
-      - run:
           name: Check if Rails is installed
           command: bundle list | grep rails
 
@@ -55,6 +48,14 @@ jobs:
       - restore_cache:
           keys:
             - gems-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Clear old cache
+          command: |
+            rm -rf Gemfile.lock
+            rm -rf ~/.bundle vendor/bundle
+            bundle install --path vendor/bundle --jobs=4 --retry=3
+
       - run:
           name: Setup database
           command: |
