@@ -7,6 +7,7 @@ executors:
         environment:
           BUNDLE_JOBS: 4
           BUNDLE_RETRY: 3
+      - image: redis:7  # 🚀 Redisをサービスとして追加
       - image: circleci/postgres:latest
         environment:
           POSTGRES_USER: $POSTGRES_USER
@@ -22,6 +23,11 @@ jobs:
       - restore_cache:
           keys:
             - gems-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Wait for Redis
+            command: |
+              dockerize -wait tcp://localhost:6379 -timeout 30s
+
       - run:
           name: Clear old gems & reinstall dependencies
           command: |
