@@ -30,12 +30,12 @@ jobs:
       # - run:
       #     name: Clear old gems & reinstall dependencies
       #     command: |
-      #       rm -rf Gemfile.lock
       #       bundle install --jobs=4 --retry=3
 
       - run:
           name: Clear old cache
           command: |
+            rm -rf Gemfile.lock
             rm -rf ~/.bundle vendor/bundle
             bundle install --path vendor/bundle --jobs=4 --retry=3
 
