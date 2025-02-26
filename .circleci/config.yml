@@ -44,11 +44,11 @@ jobs:
       - run:
           name: Setup database
           command: |
-            bundle exec rails db:create
-            bundle exec rails db:schema:load
+            bundle exec bin/rails db:create
+            bundle exec bin/rails db:schema:load
       - run:
           name: Run RSpec
-          command: bundle exec rspec
+          command: bundle exec bin/rails rspec
 
 workflows:
   version: 2
