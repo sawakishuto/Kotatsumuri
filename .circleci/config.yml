@@ -1,0 +1,56 @@
+version: 2.1
+
+executors:
+  ruby-executor:
+    docker:
+      - image: circleci/ruby:3.2.2-node
+        environment:
+          BUNDLE_JOBS: 4
+          BUNDLE_RETRY: 3
+      - image: circleci/postgres:latest
+        environment:
+          POSTGRES_USER: $POSTGRES_USER
+          POSTGRES_DB: $POSTGRES_DB
+          POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+    working_directory: ~/app
+
+jobs:
+  setup:
+    executor: ruby-executor
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - gems-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Install dependencies
+          command: bundle install --jobs 4 --retry 3
+      - save_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+  test:
+    executor: ruby-executor
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - gems-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Setup database
+          command: |
+            bundle exec rails db:create
+            bundle exec rails db:schema:load
+      - run:
+          name: Run RSpec
+          command: bundle exec rspec
+
+workflows:
+  version: 2
+  ci_pipeline:
+    jobs:
+      - setup
+      - test:
+          requires:
+            - setup
