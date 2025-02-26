@@ -24,7 +24,11 @@ jobs:
             - gems-{{ checksum "Gemfile.lock" }}
       - run:
           name: Install dependencies
-          command: bundle install --jobs 4 --retry 3 --path vendor/bundle
+          command: bundle install --jobs 4 --retry 3 
+      - run:
+          name: Check if Rails is installed
+          command: bundle list | grep rails
+
       - save_cache:
           key: gems-{{ checksum "Gemfile.lock" }}
           paths:
@@ -37,11 +41,11 @@ jobs:
       - restore_cache:
           keys:
             - gems-{{ checksum "Gemfile.lock" }}
-      # - run:
-      #     name: Setup database
-      #     command: |
-      #       rails db:create
-      #       rails db:schema:load
+      - run:
+          name: Setup database
+          command: |
+            bundle exec rails db:create
+            bundle exec rails db:schema:load
       - run:
           name: Run RSpec
           command: bundle exec rspec
