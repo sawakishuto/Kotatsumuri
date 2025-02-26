@@ -23,8 +23,15 @@ jobs:
           keys:
             - gems-{{ checksum "Gemfile.lock" }}
       - run:
-          name: Install dependencies
-          command: bundle install --jobs 4 --retry 3 
+          name: Clear old gems & reinstall dependencies
+          command: |
+            bundle clean --force
+            run: bundle clean --force
+            rm -rf ~/.bundle
+            rm -rf vendor/bundle
+            rm -rf Gemfile.lock
+            bundle install --jobs=4 --retry=3
+
       - run:
           name: Check if Rails is installed
           command: bundle list | grep rails
