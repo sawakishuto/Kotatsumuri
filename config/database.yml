@@ -27,19 +27,19 @@ default: &default
 
 development:
   <<: *default
-  database: Kotatsumuri
-  password: postgres
-  username: postgres
+  database: <%= ENV['POSTGRES_DB'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
   
 test:
   <<: *default
-  database: postgres
-  password: postgres
-  username: postgres
+  database: <%= ENV['POSTGRES_DB'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
 
 # Production environment settings.
 production:
   <<: *default
-  database: Kotatsumuri
-  username: postgres
-  password: postgres
+  database: <%= ENV['POSTGRES_DB'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
