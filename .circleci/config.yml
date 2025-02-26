@@ -27,14 +27,10 @@ jobs:
           name: Wait for Redis
           command: dockerize -wait tcp://localhost:6379 -timeout 30s
 
-      # - run:
-      #     name: Clear old gems & reinstall dependencies
-      #     command: |
-      #       bundle install --jobs=4 --retry=3
-
       - run:
-          name: Check if Rails is installed
-          command: bundle list | grep rails
+          name: install dependencies
+          command: bundle install --jobs=4 --retry=3
+
 
       - save_cache:
           key: gems-{{ checksum "Gemfile.lock" }}
