@@ -34,6 +34,8 @@ development:
 test:
   <<: *default
   database: postgres
+  password: postgres
+  username: postgres
 
 # Production environment settings.
 production:
