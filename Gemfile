@@ -38,14 +38,14 @@ gem "google-cloud-storage"
 # ユーザー認証ライブラリの追加
 gem "ruby-openai", "~> 7.3.1"
 gem "devise"
-gem "rspec-rails" # 追加
-gem "dotenv-rails"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
+  gem "dotenv-rails"
+  gem "rspec-rails" # 追加
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
