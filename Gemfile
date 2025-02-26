@@ -45,20 +45,12 @@ gem "devise"
 gem "rspec-rails" # 追加
 
 
-
-# 環境変数を設定する用途
-
-group :development, :test do
-  gem "rspec-rails"
-  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
-  gem "dotenv-rails" # 本番環境では不要
-end
-
 gem "dotenv-rails"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
-
+  
+  gem "rspec-rails"
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
