@@ -45,6 +45,11 @@ jobs:
           keys:
             - gems-{{ checksum "Gemfile.lock" }}
       - run:
+          name: Clear old gems & reinstall dependencies
+          command: |
+            rm -rf Gemfile.lock
+            bundle install --jobs=4 --retry=3
+      - run:
           name: Setup database
           command: |
             bundle exec bin/rails db:create
