@@ -59,7 +59,7 @@ jobs:
             bundle exec bin/rails db:schema:load
       - run:
           name: Run RSpec
-          command: bundle exec bin/rails rspec
+          command: bundle exec bin/rails spec
 
 workflows:
   version: 2
