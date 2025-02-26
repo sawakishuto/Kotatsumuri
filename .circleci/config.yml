@@ -26,7 +26,6 @@ jobs:
           name: Clear old gems & reinstall dependencies
           command: |
             bundle clean --force
-            run: bundle clean --force
             rm -rf ~/.bundle
             rm -rf vendor/bundle
             rm -rf Gemfile.lock
