@@ -5,7 +5,8 @@ require "rails/all"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-
+module Adapters; end  # これを追加
+module Services; end  # これを追加
 module Kotatsumuri
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -15,6 +16,8 @@ module Kotatsumuri
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
+    Rails.autoloaders.main.push_dir(Rails.root.join("app/adapters"), namespace: Adapters)
+    Rails.autoloaders.main.push_dir(Rails.root.join("app/services"), namespace: Services)
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -24,9 +27,9 @@ module Kotatsumuri
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-  
+
     config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore, key: '_your_app_session'
+    config.middleware.use ActionDispatch::Session::CookieStore, key: "_your_app_session"
 
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.

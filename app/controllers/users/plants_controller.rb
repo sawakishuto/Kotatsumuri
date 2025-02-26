@@ -93,7 +93,7 @@ class PlantsController < ApplicationController
   def get_diagnoses
         user = @current_user
         plant_id = params[:plant_id]
-        response = OpenAiService.new.post_diagnoses(
+        response = Adapters::OpenAiAapter.new.post_diagnoses(
           name: params[:name],
           location: params[:location],
           sunlight: params[:sunlight],

@@ -1,4 +1,5 @@
-class OpenAiService
+module Adapters
+class OpenAiAdapter
   require "openai"
 
   def initialize
@@ -112,7 +113,7 @@ class OpenAiService
             ],}",
             temperature: 0.0
           },
-          { type: "image_url", image_url: {url: params[:image] }} # 画像URLを適切なものに変更
+          { type: "image_url", image_url: { url: params[:image] } } # 画像URLを適切なものに変更
           ]
         }
       ]
@@ -134,4 +135,5 @@ class OpenAiService
       { success: false, error: e.message }
     end
   end
+end
 end

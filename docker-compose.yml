@@ -3,8 +3,8 @@ services:
   db:
     image: postgres:14
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - db_data:/var/lib/postgresql/data
     ports:
@@ -26,8 +26,8 @@ services:
       REDIS_URL: redis://redis:6379/1
       RAILS_ENV: production
       DATABASE_HOST: db
-      DATABASE_USERNAME: postgres
-      DATABASE_PASSWORD: postgres
+      DATABASE_USERNAME: ${POSTGRES_USER}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
       DATABASE_NAME: myapp_production
     volumes:
       - .:/rails

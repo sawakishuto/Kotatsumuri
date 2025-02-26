@@ -33,27 +33,20 @@ gem "omniauth", "1.0.0"
 # Redis のネームスペース機能を使う場合
 gem "redis-namespace", "1.11.0"
 gem "google-cloud-storage"
-
-
-
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
-
 # ユーザー認証ライブラリの追加
 gem "ruby-openai", "~> 7.3.1"
 gem "devise"
 
-
-# 環境変数を設定する用途
-gem "dotenv-rails"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
-
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
+  gem "dotenv-rails"
+  gem "rspec-rails" # 追加
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end
-
