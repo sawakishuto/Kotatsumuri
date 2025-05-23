@@ -7,7 +7,6 @@ require "openssl"
 module FirebaseIdToken
   class TokenVerifier
     CERTS_URI = "https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com"
-
     def initialize
       redis_url = ENV["REDIS_URL"] || "redis://redis:6379/1"
       @redis = Redis.new(url: redis_url)
